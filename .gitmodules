@@ -1,0 +1,8 @@
+[submodule "MS-PowerAPP-Instructor"]
+	path = MS-PowerAPP-Instructor
+	url = https://github.com/alvarobittar/MS-PowerAPP-Instructor.git
+	branch = main
+[submodule "MS-PowerAPP-Usuario"]
+	path = MS-PowerAPP-Usuario
+	url = https://github.com/santipaez/MS-PowerAPP-Usuario.git
+	branch = main
