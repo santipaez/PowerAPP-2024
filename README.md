@@ -10,13 +10,13 @@ Actualmente, el proyecto consta de los siguientes microservicios:
 
 El microservicio de Usuario se encarga de todas las operaciones relacionadas con los usuarios, como la creación, actualización y eliminación de cuentas de usuario. También permite a los usuarios reservar y cancelar clases.
 
-El código para este microservicio se encuentra en [MS-PowerAPP-Usuario](MS-PowerAPP-Usuario/).
+El código para este microservicio se encuentra en [MS-PowerAPP-Usuario](https://github.com/santipaez/MS-PowerAPP-Usuario).
 
 ### Instructor
 
 El microservicio de Instructor se encarga de todas las operaciones relacionadas con los instructores, como la creación, actualización y eliminación de cuentas de instructor.
 
-El código para este microservicio se encuentra en [MS-PowerAPP-Instructor](MS-PowerAPP-Instructor/).
+El código para este microservicio se encuentra en [MS-PowerAPP-Instructor](https://github.com/alvarobittar/MS-PowerAPP-Instructor).
 
 ## Próximos pasos
 
