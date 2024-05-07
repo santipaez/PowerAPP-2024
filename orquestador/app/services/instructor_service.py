@@ -2,7 +2,7 @@ import requests
 
 class InstructorService:
     def __init__(self):
-        self.base_url = 'http://host.docker.internal:5002'
+        self.base_url = 'http://localhost:5002'
 
     def get_data(self):
         response = requests.get(f'{self.base_url}')
