@@ -1,0 +1,42 @@
+version: "3.3"
+services:
+  ms-user:
+    container_name: ms-user
+    image: ms-user:v1.0.0
+    networks: 
+      - redinterna
+    ports: 
+      - 5001:5000
+    env_file:
+      - ./MS-PowerAPP-Usuario/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ms-user.rule=Host(`ms-user.docker.localhost`)"
+      - "traefik.http.routers.ms-user.entrypoints=web"
+      - "traefik.http.services.ms-user.loadbalancer.server.port=5000"
+
+  ms-instructor:
+    container_name: ms-instructor
+    image: ms-instructor:v1.0.0
+    networks: 
+      - redinterna
+    ports: 
+      - 5002:5000
+    env_file:
+      - ./MS-PowerAPP-Instructor/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ms-instructor.rule=Host(`ms-instructor.docker.localhost`)"
+      - "traefik.http.routers.ms-instructor.entrypoints=web"
+      - "traefik.http.services.ms-instructor.loadbalancer.server.port=5000"
+
+  redis:
+    image: redis:latest
+    networks:
+      - redinterna
+    ports:
+      - 6379:6379
+
+networks:
+  redinterna:
+    external: true
