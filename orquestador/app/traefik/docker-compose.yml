@@ -11,6 +11,9 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./config/config.yml:/etc/traefik/config.yml"
+      - "./config/traefik.yml:/etc/traefik/traefik.yml"
+      - "./certs:/etc/traefik/certs"
     networks:
       - redinterna
 
