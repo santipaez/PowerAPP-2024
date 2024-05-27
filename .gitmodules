@@ -6,3 +6,7 @@
 	path = MS-PowerAPP-Usuario
 	url = https://github.com/santipaez/MS-PowerAPP-Usuario.git
 	branch = main
+[submodule "MS-PowerApp-Gym_Clasess"]
+	path = MS-PowerApp-Gym_Clasess
+	url = https://github.com/joaquinpiastre/MS-PowerApp-Gym_Clasess.git
+	branch = main
