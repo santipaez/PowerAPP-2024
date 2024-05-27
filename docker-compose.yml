@@ -15,6 +15,21 @@ services:
       - "traefik.http.routers.ms-user.entrypoints=web"
       - "traefik.http.services.ms-user.loadbalancer.server.port=5000"
 
+  ms-gym_class:
+    container_name: ms-gym_class
+    image: ms-gym_class:v1.0.0
+    networks: 
+      - redinterna
+    ports: 
+      - 5003:5000
+    env_file:
+      - ./MS-PowerApp-Gym_Clasess/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ms-gym_class.rule=Host(`ms-gym_class.docker.localhost`)"
+      - "traefik.http.routers.ms-gym_class.entrypoints=web"
+      - "traefik.http.services.ms-gym_class.loadbalancer.server.port=5000"
+
   ms-instructor:
     container_name: ms-instructor
     image: ms-instructor:v1.0.0
