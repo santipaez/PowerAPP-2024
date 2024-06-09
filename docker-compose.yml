@@ -11,8 +11,8 @@ services:
       - ./MS-PowerAPP-Usuario/.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ms-user.rule=Host(`ms-user.docker.localhost`)"
-      - "traefik.http.routers.ms-user.entrypoints=web"
+      - "traefik.http.routers.ms-user.rule=Host(`ms-user.powerapp.localhost`)"
+      - "traefik.http.routers.ms-user.tls=true"
       - "traefik.http.services.ms-user.loadbalancer.server.port=5000"
 
   ms-gym_class:
@@ -21,14 +21,12 @@ services:
     networks: 
       - redinterna
     ports: 
-      - 5003:5000
-    env_file:
-      - ./MS-PowerApp-Gym_Clasess/.env
+      - 5002:5000
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ms-gym_class.rule=Host(`ms-gym_class.docker.localhost`)"
-      - "traefik.http.routers.ms-gym_class.entrypoints=web"
-      - "traefik.http.services.ms-gym_class.loadbalancer.server.port=5000"
+      - "traefik.http.routers.ms-gymclass.rule=Host(`ms-gymclass.powerapp.localhost`)"
+      - "traefik.http.routers.ms-gymclass.tls=true"
+      - "traefik.http.services.ms-gymclass.loadbalancer.server.port=5000"
 
   ms-instructor:
     container_name: ms-instructor
@@ -36,21 +34,24 @@ services:
     networks: 
       - redinterna
     ports: 
-      - 5002:5000
-    env_file:
-      - ./MS-PowerAPP-Instructor/.env
+      - 5003:5000
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ms-instructor.rule=Host(`ms-instructor.docker.localhost`)"
-      - "traefik.http.routers.ms-instructor.entrypoints=web"
+      - "traefik.http.routers.ms-instructor.rule=Host(`ms-instructor.powerapp.localhost`)"
+      - "traefik.http.routers.ms-instructor.tls=true"
       - "traefik.http.services.ms-instructor.loadbalancer.server.port=5000"
 
   redis:
-    image: redis:latest
+    image: redis:7-bookworm
+    restart: always
+    volumes:
+      - ./data:/data
+      - ./data/redis.conf:/data/redis.conf
+    command: redis-server /data/redis.conf --loglevel notice --requirepass ${REDIS_PASSWORD}
+    # ports:
+    #   - "6379:6379"
     networks:
       - redinterna
-    ports:
-      - 6379:6379
 
 networks:
   redinterna:

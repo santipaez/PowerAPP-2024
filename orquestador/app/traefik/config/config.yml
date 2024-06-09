@@ -14,5 +14,5 @@ http:
 
 tls:
   certificates:
-    - certFile: "/etc/certs/powerapp-cert.pem"
-      keyFile: "/etc/certs/powerapp-key.pem"
+    - certFile: "/etc/traefik/certs/powerapp-cert.pem"
+    - keyFile: "/etc/traefik/certs/powerapp-key.pem"

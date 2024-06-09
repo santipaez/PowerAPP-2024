@@ -2,7 +2,7 @@ import requests
 
 class GymClassService:
     def __init__(self):
-        self.base_url = 'http://localhost:5003'
+        self.base_url = 'http://localhost:5000'
 
     def get_data(self):
         response = requests.get(f'{self.base_url}')
