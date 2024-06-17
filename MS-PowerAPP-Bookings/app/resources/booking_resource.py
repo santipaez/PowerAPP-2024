@@ -3,6 +3,7 @@ from app.services.booking_service import BookingService
 from app.models.response_message import ResponseBuilder
 from app.mapping.response_schema import ResponseSchema
 
+
 booking = Blueprint('booking', __name__)
 booking_schema = BookingService()
 

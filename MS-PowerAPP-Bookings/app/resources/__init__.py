@@ -1,1 +1,1 @@
-from .booking import booking
+from .booking_resource import booking
