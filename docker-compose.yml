@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   ms-user:
     container_name: ms-user
@@ -14,6 +13,9 @@ services:
       - "traefik.http.routers.ms-user.rule=Host(`ms-user.powerapp.localhost`)"
       - "traefik.http.routers.ms-user.tls=true"
       - "traefik.http.services.ms-user.loadbalancer.server.port=5000"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
 
   ms-gym_class:
     container_name: ms-gym_class
@@ -27,6 +29,9 @@ services:
       - "traefik.http.routers.ms-gymclass.rule=Host(`ms-gymclass.powerapp.localhost`)"
       - "traefik.http.routers.ms-gymclass.tls=true"
       - "traefik.http.services.ms-gymclass.loadbalancer.server.port=5000"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
 
   ms-instructor:
     container_name: ms-instructor
@@ -40,18 +45,10 @@ services:
       - "traefik.http.routers.ms-instructor.rule=Host(`ms-instructor.powerapp.localhost`)"
       - "traefik.http.routers.ms-instructor.tls=true"
       - "traefik.http.services.ms-instructor.loadbalancer.server.port=5000"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+      - "traefik.http.middlewares.ms1.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
 
-  redis:
-    image: redis:7-bookworm
-    restart: always
-    volumes:
-      - ./data:/data
-      - ./data/redis.conf:/data/redis.conf
-    command: redis-server /data/redis.conf --loglevel notice --requirepass ${REDIS_PASSWORD}
-    # ports:
-    #   - "6379:6379"
-    networks:
-      - redinterna
 
 networks:
   redinterna:
