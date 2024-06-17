@@ -4,6 +4,11 @@ services:
     image: ms-user:v1.0.0
     networks: 
       - redinterna
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_DB${POSTGRES_DB}
     ports: 
       - 5001:5000
     env_file:
@@ -20,6 +25,11 @@ services:
   ms-gym_class:
     container_name: ms-gym_class
     image: ms-gym_class:v1.0.0
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_DB${POSTGRES_DB}
     networks: 
       - redinterna
     ports: 
@@ -36,6 +46,11 @@ services:
   ms-instructor:
     container_name: ms-instructor
     image: ms-instructor:v1.0.0
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_DB${POSTGRES_DB}
     networks: 
       - redinterna
     ports: 
