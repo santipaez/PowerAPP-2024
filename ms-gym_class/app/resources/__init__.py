@@ -1,0 +1,1 @@
+from .gym_class_resource import gym_class

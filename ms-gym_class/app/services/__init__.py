@@ -1,0 +1,1 @@
+from app.services.gym_class_service import GymClassService

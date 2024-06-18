@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  postgresql:
+    image: postgres:alpine3.19
+
+    networks:
+      - redinterna
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.tcp.routers.postgresql.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.postgresql.entrypoints=postgresql"
+      - "traefik.tcp.routers.postgresql.service=postgresql"
+      - "traefik.tcp.services.postgresql.loadbalancer.server.port=5432"
+    
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    restart: always
+
+networks:
+  redinterna:
