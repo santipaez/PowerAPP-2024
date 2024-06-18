@@ -8,3 +8,4 @@ data
 dataredis
 _certs/
 migrations
+_data

@@ -14,14 +14,14 @@ class DevelopmentConfig(Config):
     DEBUG = True
     FLASK_ENV = 'development'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.environ.get('POSTGRES_USER')}:{os.environ.get('POSTGRES_PASSWORD')}@{os.environ.get('POSTGRES_URL')}/{os.environ.get('POSTGRES_DB')}"
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.environ.get('USER_DB')}:{os.environ.get('PASS_DB')}@{os.environ.get('URL_DB')}/{os.environ.get('NAME_DB')}"
 
 class ProductionConfig(Config):
     FLASK_ENV = 'production'
     DEBUG = False
     TESTING = False
     SQLALCHEMY_RECORD_QUERIES = False
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.environ.get('POSTGRES_USER')}:{os.environ.get('POSTGRES_PASSWORD')}@{os.environ.get('POSTGRES_URL')}/{os.environ.get('POSTGRES_DB')}"
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.environ.get('USER_DB')}:{os.environ.get('PASS_DB')}@{os.environ.get('URL_DB')}/{os.environ.get('NAME_DB')}"
 
     @classmethod
     def init_app(cls, app):
