@@ -1,4 +1,5 @@
 from flask import jsonify, Blueprint, request
+import requests
 from app.services.gym_class_service import GymClassService
 from app.mapping.gym_class_schema import GymClassSchema
 from app.models.response_message import ResponseBuilder

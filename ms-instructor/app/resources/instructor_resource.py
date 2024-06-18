@@ -1,4 +1,5 @@
 from app import db
+import requests
 from flask import jsonify, Blueprint, request
 from app.models.instructor import Instructor
 from app.services.instructor_service import InstructorService
@@ -48,25 +49,19 @@ def delete_instructor(id):
     return {"message": "Instructor eliminado"}, 200
 
 #create class
-@instructor.route('/create_class/<int:id>', methods=['POST'])
-def create_class(id):
-    service = GymClassService()
-    class_data = request.get_json()
-    class_data['instructor_id'] = id
-    new_class = service.create(class_data)
-    return {"message": "Clase creada", "class": GymClassSchema().dump(new_class)}, 201
+def create_class(instructor_id, class_data):
+    url = f"http://ms-gymclass.powerapp.localhost/add/{instructor_id}"
+    response = requests.post(url, json=class_data)
+    return response.json()
 
 #update class
-@instructor.route('/update_class/<int:id>', methods=['PUT'])
-def update_class(id):
-    service = GymClassService()
-    class_data = request.json
-    updated_class = service.update(class_data, id)
-    return {"message": "Clase actualizada", "class": GymClassSchema().dump(updated_class)}, 200
+def update_class(class_id, class_data):
+    url = f"http://ms-gymclass.powerapp.localhost/update/{class_id}"
+    response = requests.put(url, json=class_data)
+    return response.json()
 
 #delete class
-@instructor.route('/delete_class/<int:id>', methods=['DELETE'])
-def delete_class(id):
-    service = GymClassService()
-    service.delete(id)
-    return {"message": "Clase eliminada"}, 200
+def delete_class(class_id):
+    url = f"http://ms-gymclass.powerapp.localhost/delete/{class_id}"
+    response = requests.delete(url)
+    return response.json()
