@@ -1,7 +1,8 @@
-version: '3.3'
 services:
   postgresql:
     image: postgres:alpine3.19
+
+    container_name: postgresql
 
     networks:
       - redinterna
@@ -24,3 +25,4 @@ services:
 
 networks:
   redinterna:
+    external: true
