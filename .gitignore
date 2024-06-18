@@ -7,3 +7,4 @@ certs/
 data
 dataredis
 _certs/
+migrations
