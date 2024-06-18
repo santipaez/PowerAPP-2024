@@ -11,8 +11,6 @@ services:
       - POSTGRES_DB${POSTGRES_DB}
     ports: 
       - 5001:5000
-    env_file:
-      - ./MS-PowerAPP-Usuario/.env
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ms-user.rule=Host(`ms-user.powerapp.localhost`)"
