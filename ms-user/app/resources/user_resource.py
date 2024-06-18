@@ -1,4 +1,5 @@
-from flask import jsonify, Blueprint, requests, request
+from flask import jsonify, Blueprint, request
+import requests
 from app.services.user_service import UserService
 from app.mapping.user_schema import UserSchema
 from app.mapping.response_schema import ResponseSchema
