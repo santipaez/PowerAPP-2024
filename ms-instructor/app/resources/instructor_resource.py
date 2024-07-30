@@ -13,25 +13,18 @@ instructor_schema = InstructorSchema()
 
 # find all
 @instructor.route('/find_all', methods=['GET'])
-def get_instructors():
+def index():
     service = InstructorService()
-    response_builder = ResponseBuilder()
     instructors = service.find_all()
-    response_builder.add_message("Instructores encontrados")\
-        .add_status_code(200)\
-        .add_data([instructor.to_dict() for instructor in instructors])
-    return ResponseSchema().dump(response_builder.build()), 200
+    return jsonify({"instructors": [instructor.to_dict() for instructor in instructors]}), 200
 
 #find by id
 @instructor.route('/find/<int:id>', methods=['GET'])
-def get_instructor_by_id(id):
+def find(id):
     service = InstructorService()
-    response_builder = ResponseBuilder()
     instructor = service.find_by_id(id)
-    response_builder.add_message("Instructor encontrado")\
-        .add_status_code(200)\
-        .add_data(instructor.to_dict() if instructor else None)
-    return ResponseSchema().dump(response_builder.build()), 200
+    if instructor is None:
+        return jsonify({"message": "Instructor no encontrado"}), 404
 
 #update
 @instructor.route('/update/<int:id>', methods=['PUT'])

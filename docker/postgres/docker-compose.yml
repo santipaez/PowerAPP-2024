@@ -1,7 +1,8 @@
 version: '3.3'
 services:
   postgresql-user:
-    image: postgres:alpine3.19
+    container_name: postgres-user
+    image: postgres:latest
     networks:
       - redinterna
     environment:
@@ -20,7 +21,8 @@ services:
     restart: always
 
   postgresql-instructor:
-    image: postgres:alpine3.19
+    container_name: postgres-instructor
+    image: postgres:latest
     networks:
       - redinterna
     environment:
@@ -39,7 +41,8 @@ services:
     restart: always
 
   postgresql-gymclass:
-    image: postgres:alpine3.19
+    container_name: postgres-gymclass
+    image: postgres:latest
     networks:
       - redinterna
     environment:
