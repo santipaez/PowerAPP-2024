@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_URL=${DB_URL}
+      - POSTGRES_URL=${DB_URL_USER}
       - POSTGRES_DB=${DB_NAME_USER}
     networks:
         redinterna:
@@ -27,12 +27,12 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_URL=${DB_URL}
+      - POSTGRES_URL=${DB_URL_GYMCLASS}
       - POSTGRES_DB=${DB_NAME_GYMCLASS}
     networks:
         redinterna:
           aliases:
-            - "ms-user.powerapp.localhost"
+            - "ms-gymclass.powerapp.localhost"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ms-gymclass.rule=Host(`ms-gymclass.powerapp.localhost`)"
@@ -49,12 +49,12 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_URL=${DB_URL}
+      - POSTGRES_URL=${DB_URL_INSTRUCTOR}
       - POSTGRES_DB=${DB_NAME_INSTRUCTOR}
     networks:
         redinterna:
           aliases:
-            - "ms-user.powerapp.localhost"
+            - "ms-instructor.powerapp.localhost"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ms-instructor.rule=Host(`ms-instructor.powerapp.localhost`)"

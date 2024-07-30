@@ -52,13 +52,13 @@ def update(id):
 # get all classes
 @user.route('/get_classes', methods=['GET'])
 def get_all_classes():
-    response = requests.get('http://ms-gymclass.powerapp.localhost/find_all')
+    response = requests.get('http://ms-gymclass.powerapp.localhost/classes/find_all')
     classes = response.json()
     return {"classes": classes}, 200
 
 #book class
 def book_gym_class(user_id, gym_class_id):
-    url = f'http://ms-bookings.powerapp.localhost/book_class/{user_id}/{gym_class_id}'
+    url = f'http://ms-bookings.powerapp.localhost/bookings/book_class/{user_id}/{gym_class_id}'
     booking_data = {'user_id': user_id, 'gym_class_id': gym_class_id}
     response = requests.post(url, json=booking_data)
     return response.json()
@@ -66,13 +66,13 @@ def book_gym_class(user_id, gym_class_id):
 #book cancel
 @user.route('/book_cancel/<int:booking_id>', methods=['DELETE'])
 def cancel_gym_class(booking_id):
-    url = f'http://ms-bookings.powerapp.localhost/book_cancel/{booking_id}'
+    url = f'http://ms-bookings.powerapp.localhost/bookings/book_cancel/{booking_id}'
     response = requests.delete(url)
     return response.json()
 
 #get all bookings
 @user.route('/get_bookings/<int:user_id>', methods=['GET'])
 def get_user_bookings(user_id):
-    url = f'http://ms-bookings.powerapp.localhost/get_bookings/{user_id}'
+    url = f'http://ms-bookings.powerapp.localhost/bookings/get_bookings/{user_id}'
     response = requests.get(url)
     return response.json()
