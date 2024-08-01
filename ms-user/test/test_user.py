@@ -41,7 +41,7 @@ class TestUser(unittest.TestCase):
         UserService().register(user)
         db.session.delete(user)
         db.session.commit()
-        self.assertTrue(User.query.get (user.id) is None)
+        self.assertTrue(User.query.get(user.id) is None)
         
     def test_find_by_id(self):
         user = User(name="test", email="test@email.com", password="test")
