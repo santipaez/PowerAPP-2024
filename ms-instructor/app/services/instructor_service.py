@@ -10,6 +10,7 @@ from tenacity import retry, stop_after_attempt, stop_after_delay
 class InstructorService():
     
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
+    @cache.memoize(timeout=40)
     def __init__(self) -> None:
         self.__repo = InstructorRepository()
 
@@ -26,12 +27,14 @@ class InstructorService():
 
 
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
+    @cache.memoize(timeout=40)
     def register(self, entity: Instructor) -> Instructor:
         entity.password = SecurityService.generate_hash(entity.password)
         return InstructorRepository().create(entity)
 
 
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
+    @cache.memoize(timeout=40)
     def update (self, id: int, entity: Instructor) -> Instructor:
         if 'password' in entity:
             entity['password'] = SecurityService.generate_hash(entity['password'])
@@ -39,6 +42,7 @@ class InstructorService():
     
 
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
+    @cache.memoize(timeout=40)
     def delete (self, entity: Instructor) -> bool:
         return self.__repo.delete(entity)
 
