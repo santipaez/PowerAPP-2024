@@ -23,15 +23,15 @@ def get_classes():
 @gym_class.route('/find/<int:id>', methods=['GET'])
 def find(id):
     service = GymClassService()
-    find_clasess = service.find_by_id(id)
-    if find_clasess is None:
-        return jsonify({"message": "Usuario no encontrado"}), 404
+    find_classes = service.find_by_id(id)
+    if find_classes is None:
+        return jsonify({"message": "Clase no encontrada"}), 404
     
     gym_class_schema = GymClassSchema()
-    serialized_data = gym_class_schema.dump(find_clasess)
+    serialized_data = gym_class_schema.dump(find_classes)
 
     response_builder = ResponseBuilder()
-    response_builder.add_message("Usuario encontrado")\
+    response_builder.add_message("Clase encontrada")\
         .add_status_code(200)\
         .add_data(serialized_data)
     return ResponseSchema().dump(response_builder.build()), 200

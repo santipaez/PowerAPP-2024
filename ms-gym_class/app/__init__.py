@@ -22,7 +22,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     
     from app.resources import gym_class
-    app.register_blueprint(gym_class, url_prefix='/classes')
+    app.register_blueprint(gym_class, url_prefix='/gym_class')
     
     db.init_app(app)
     migrate.init_app(app, db)

@@ -1,12 +1,17 @@
 services:
   ms-user:
-    container_name: ms-user
     image: ms-user:v1.0.0
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_URL=${DB_URL_USER}
       - POSTGRES_DB=${DB_NAME_USER}
+      - CONTAINER_USER_SERVICE_URL=${CONTAINER_USER_SERVICE_URL}
+      - USER_SERVICE_URL=${USER_SERVICE_URL}
+      - CONTAINER_INSTRUCTOR_SERVICE_URL=${CONTAINER_INSTRUCTOR_SERVICE_URL}
+      - INSTRUCTOR_SERVICE_URL=${INSTRUCTOR_SERVICE_URL}
+      - CONTAINER_GYMCLASS_SERVICE_URL=${CONTAINER_GYMCLASS_SERVICE_URL}
+      - GYMCLASS_SERVICE_URL=${GYMCLASS_SERVICE_URL}
     networks:
         redinterna:
           aliases:
@@ -22,13 +27,18 @@ services:
       - "traefik.http.middlewares.ms-user.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
 
   ms-gym_class:
-    container_name: ms-gym_class
     image: ms-gym_class:v1.0.0
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_URL=${DB_URL_GYMCLASS}
       - POSTGRES_DB=${DB_NAME_GYMCLASS}
+      - CONTAINER_USER_SERVICE_URL=${CONTAINER_USER_SERVICE_URL}
+      - USER_SERVICE_URL=${USER_SERVICE_URL}
+      - CONTAINER_INSTRUCTOR_SERVICE_URL=${CONTAINER_INSTRUCTOR_SERVICE_URL}
+      - INSTRUCTOR_SERVICE_URL=${INSTRUCTOR_SERVICE_URL}
+      - CONTAINER_GYMCLASS_SERVICE_URL=${CONTAINER_GYMCLASS_SERVICE_URL}
+      - GYMCLASS_SERVICE_URL=${GYMCLASS_SERVICE_URL}
     networks:
         redinterna:
           aliases:
@@ -44,13 +54,18 @@ services:
       - "traefik.http.middlewares.ms-gymclass.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
 
   ms-instructor:
-    container_name: ms-instructor
     image: ms-instructor:v1.0.0
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_URL=${DB_URL_INSTRUCTOR}
       - POSTGRES_DB=${DB_NAME_INSTRUCTOR}
+      - CONTAINER_USER_SERVICE_URL=${CONTAINER_USER_SERVICE_URL}
+      - USER_SERVICE_URL=${USER_SERVICE_URL}
+      - CONTAINER_INSTRUCTOR_SERVICE_URL=${CONTAINER_INSTRUCTOR_SERVICE_URL}
+      - INSTRUCTOR_SERVICE_URL=${INSTRUCTOR_SERVICE_URL}
+      - CONTAINER_GYMCLASS_SERVICE_URL=${CONTAINER_GYMCLASS_SERVICE_URL}
+      - GYMCLASS_SERVICE_URL=${GYMCLASS_SERVICE_URL}
     networks:
         redinterna:
           aliases:

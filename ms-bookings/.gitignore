@@ -1,7 +1,0 @@
-__pycache__
-.env
-docker/postgres/data
-venv
-.vscode
-.pytest_cache
-migrations

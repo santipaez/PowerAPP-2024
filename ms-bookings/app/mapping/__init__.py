@@ -1,1 +1,0 @@
-from .booking_schema import InstructorSchema
