@@ -29,9 +29,6 @@ def login():
     
     if service.check_auth(email, password):
         user = service.find_by_email(email)
-        list_roles = [role.email for role in user.roles]
-        
-        access_token = create_access_token(user_schema.dump(user), additional_claims={"roles": list_roles})
         return jsonify({"id": user.id, "Sesion iniciada correctamente:": user.name}), 200
     else:
         return jsonify({"error": "Email or password invalid"}), 401

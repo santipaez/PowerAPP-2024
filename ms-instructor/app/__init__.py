@@ -18,7 +18,6 @@ def create_app():
     app = Flask(__name__)
 
     app.config['JWT_SECRET_KEY'] = 'super-secret'
-    
     app.config["SQLALCHEMY_DATABASE_URI"] = FULL_URL_DB
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

@@ -6,7 +6,6 @@ from tenacity import retry, stop_after_delay, stop_after_attempt
 class GymClassService:
 
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
-    @cache.memoize(timeout=40)
     def __init__(self) -> None:
         self.__repo = GymClassRepository()
     

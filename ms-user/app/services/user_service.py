@@ -7,9 +7,8 @@ from werkzeug.security import check_password_hash
 from tenacity import retry, stop_after_attempt, stop_after_delay
 
 class UserService():
-
+    
     @retry(stop=(stop_after_delay(5) | stop_after_attempt(5)))
-    @cache.memoize(timeout=40)        
     def __init__(self) -> None:
         self.__repo = UserRepository()
     

@@ -30,9 +30,6 @@ def login():
     
     if service.check_auth(email, password):
         instructor = service.find_by_email(email)
-        list_roles = [role.email for role in instructor.roles]
-        
-        access_token = create_access_token(instructor_schema.dump(instructor), additional_claims={"roles": list_roles})
         return jsonify({"id": instructor.id, "Sesion iniciada correctamente:": instructor.name}), 200
     else:
         return jsonify({"error": "Email or password invalid"}), 401

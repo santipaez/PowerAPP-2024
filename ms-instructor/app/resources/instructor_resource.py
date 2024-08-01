@@ -1,12 +1,7 @@
-from app import db
 import requests
 from flask import jsonify, Blueprint, request
-from app.models.instructor import Instructor
 from app.services.instructor_service import InstructorService
-from app.mapping.response_schema import ResponseSchema
 from app.mapping.instructor_schema import InstructorSchema
-from app.models.response_message import ResponseBuilder
-
 
 instructor = Blueprint('instructor', __name__)
 instructor_schema = InstructorSchema()
